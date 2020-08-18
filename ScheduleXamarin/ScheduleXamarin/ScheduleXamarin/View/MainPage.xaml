@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ScheduleXamarin"
+             xmlns:schedule="clr-namespace:Syncfusion.SfSchedule.XForms;assembly=Syncfusion.SfSchedule.XForms"
+             x:Class="ScheduleXamarin.MainPage">
+
+<ContentPage.Content>
+    <Grid>
+       <schedule:SfSchedule x:Name="Schedule"
+                                 DataSource="{Binding Meetings}"
+                                 ShowAppointmentsInline="True"
+                                 ScheduleView="MonthView">
+
+           <schedule:SfSchedule.ViewHeaderStyle>
+             <schedule:ViewHeaderStyle>
+                 <schedule:ViewHeaderStyle.DayFontFamily>
+                     <OnPlatform x:TypeArguments="x:String" iOS="Lobster-Regular" Android="Lobster-Regular.ttf" WinPhone="Assets/Lobster-Regular.ttf#Lobster" />
+                 </schedule:ViewHeaderStyle.DayFontFamily>
+             </schedule:ViewHeaderStyle>
+           </schedule:SfSchedule.ViewHeaderStyle>
+
+           <schedule:SfSchedule.HeaderStyle>
+               <schedule:HeaderStyle>
+                   <schedule:HeaderStyle.FontFamily>
+                       <OnPlatform x:TypeArguments="x:String" iOS="Lobster-Regular" Android="Lobster-Regular.ttf" WinPhone="Assets/Lobster-Regular.ttf#Lobster" />
+                   </schedule:HeaderStyle.FontFamily>
+               </schedule:HeaderStyle>
+           </schedule:SfSchedule.HeaderStyle>
+
+           <schedule:SfSchedule.MonthCellStyle>
+               <schedule:MonthViewCellStyle>
+                   <schedule:MonthViewCellStyle.FontFamily>
+                       <OnPlatform x:TypeArguments="x:String" iOS="Lobster-Regular" Android="Lobster-Regular.ttf" WinPhone="Assets/Lobster-Regular.ttf#Lobster" />
+                   </schedule:MonthViewCellStyle.FontFamily>
+               </schedule:MonthViewCellStyle>
+           </schedule:SfSchedule.MonthCellStyle>
+
+           <schedule:SfSchedule.MonthViewSettings>
+               <schedule:MonthViewSettings ShowWeekNumber="True">
+                   <schedule:MonthViewSettings.WeekNumberStyle>
+                       <schedule:WeekNumberStyle>
+                           <schedule:WeekNumberStyle.FontFamily>
+                               <OnPlatform x:TypeArguments="x:String" iOS="Lobster-Regular" Android="Lobster-Regular.ttf" WinPhone="Assets/Lobster-Regular.ttf#Lobster" />
+                           </schedule:WeekNumberStyle.FontFamily>
+                       </schedule:WeekNumberStyle>
+                   </schedule:MonthViewSettings.WeekNumberStyle>
+               </schedule:MonthViewSettings>
+           </schedule:SfSchedule.MonthViewSettings>
+
+                <schedule:SfSchedule.AppointmentMapping>
+                <schedule:ScheduleAppointmentMapping
+                        ColorMapping="Color"
+                        EndTimeMapping="To"
+                        StartTimeMapping="From"
+                        SubjectMapping="EventName"
+                        />
+            </schedule:SfSchedule.AppointmentMapping>
+
+            <schedule:SfSchedule.BindingContext>
+                <local:SchedulerViewModel/>
+            </schedule:SfSchedule.BindingContext>
+        </schedule:SfSchedule>
+    </Grid>
+</ContentPage.Content>
+    <ContentPage.Behaviors>
+        <local:SchedulerPageBehavior/>
+    </ContentPage.Behaviors>
+</ContentPage>
